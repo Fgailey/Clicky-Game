@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import Scores from './game-parts/Scores';
-import Cards from './game-parts/Cards';
-import chars from '../chars.json'
 class Navbar extends Component {
-state = {
-    chars
-};
 
 
     render(){
@@ -30,17 +24,7 @@ state = {
       </ul>
     </div>
   </nav>
-  <Scores />
-  {this.state.chars.map(char => (
-      <Cards
-      key={char.id} 
-      name={char.name}
-      image={char.image}
-      />
-
-  ))}
 </div>
-
   );
 }
 }
