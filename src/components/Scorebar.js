@@ -1,13 +1,16 @@
 import React from 'react';
+import './scorebar.css'
 
 function Scorebar(props) {
     
         return (
         <div>
-            <div className="row">
-                <span>HighScore = {props.highScore}</span>
-                <span>clicked Message = {props.clickedMessage}</span>
-                <span>click Guess = {props.correctGuess}</span>
+            <div className="container ">
+                <div className="row scorebar">
+                    <div className="col ml-4">HighScore: {props.highScore}</div>
+                    <div className="col-md-auto">{props.clickedMessage}</div>
+                    <div className="col mr-4 text-right">Correct: {props.correctGuess}/12</div>
+                </div>
             </div>
         </div>
   );

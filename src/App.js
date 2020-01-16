@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Navbar from './components/Navbar'
 import Scorebar from './components/Scorebar';
 import Cards from './components/Cards';
+import './components/cards.css';
 import chars from './chars.json'
 
 
@@ -28,7 +29,7 @@ clicker = id =>{
   if (currentChar[0].clicked){
     console.log("you lose")
 
-    clickedMessage = "Oh No you Lose!, Better luck next time!"
+    clickedMessage = "Oh No you Lose! Better luck next time!"
 
     correctGuess = 0
 
@@ -42,7 +43,7 @@ clicker = id =>{
     
   }
   //if the correct guess count has not reached the max then continue the game
-  else if(correctGuess < 12){
+  else if(correctGuess < 11){
     console.log("right")
     currentChar[0].clicked = true;
     
@@ -67,25 +68,27 @@ clicker = id =>{
   //once the game has been won, announce win and reset the game
   else{
     console.log("win")
+    
     clickedMessage = "CONGRATS YOU GOT THEM ALL RIGHT!!!, Now can you do it again?"
+  
     correctGuess = 0
+
+    highScore = 12
+
     chars.forEach(char => char.clicked = false);
 
 
     this.setState({correctGuess})
     this.setState({clickedMessage})
+    this.setState({highScore})
     this.setState({chars})
   }
-
-
-  // this.setState({ correctGuesses });
-  // this.setState({ clickMessage });
 
   }
   render(){
     return (
       <div>
-        <div className="container-fluid">
+        <div className="container-fluid p-0">
 
         <Navbar />
         <Scorebar 
@@ -94,18 +97,20 @@ clicker = id =>{
           correctGuess={this.state.correctGuess}
           />
           </div>
-        <div className="container">
-          <div className="row">
-            {this.state.chars.map(char => (
-              <Cards  
-              key={char.id} 
-              id={char.id} 
-              name={char.name}
-              image={char.image}
-              clicked={char.clicked}
-              clicker={this.clicker}
-              />)
-              )}
+        <div className="container body-background">
+          <div className="row my-1 justify-content-md-center">
+            {
+              this.state.chars.map(char => (
+                <Cards  
+                key={char.id} 
+                id={char.id} 
+                name={char.name}
+                image={char.image}
+                clicked={char.clicked}
+                clicker={this.clicker}
+                />)
+              )
+            }
           </div>
         </div>
 
